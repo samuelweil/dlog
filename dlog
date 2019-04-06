@@ -1,0 +1,21 @@
+#!/bin/bash
+
+LOGBOOK_PATH="$HOME/logbook"
+
+CURRENT_PAGE="$LOGBOOK_PATH/$(date '+%Y-%m-%d').md"
+
+case $1 in
+	search)
+		grep -H $2 $LOGBOOK_PATH/*.md
+		;;
+	open)
+		vim $CURRENT_PAGE
+		;;
+	list)
+		ls $LOGBOOK_PATH
+		;;
+	*)
+		echo -e "$@\n" >> $CURRENT_PAGE
+		;;
+
+esac
